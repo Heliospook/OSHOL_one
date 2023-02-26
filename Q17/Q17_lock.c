@@ -20,7 +20,7 @@ int main(){
     lock.l_start = 0;
     lock.l_len = 0;
     lock.l_pid = getpid();
-    fcntl(fd, F_SETLK, &lock);
+    fcntl(fd, F_SETLKW, &lock);
 
     int ticket_number;
     read(fd, &ticket_number, sizeof(ticket_number));
@@ -32,7 +32,7 @@ int main(){
     write(fd, &ticket_number, sizeof(ticket_number));
 
     lock.l_type = F_UNLCK;
-    fcntl(fd, F_SETLK, &lock);
+    fcntl(fd, F_SETLKW, &lock);
     
 	return 0;
 }
